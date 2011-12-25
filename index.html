@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Popup</title>
+	<style>
+		#popup {display:none; background:#fff; padding:10px 30px; text-align:center; border-radius:3px; border:solid 1px #eee; box-shadow:#ccc 1px 1px 1px 1px}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="popup.js"></script>
+</head>
+<body>
+	<div id="popup">
+		<p>My popup</p>
+		<a href="#" class="close">close</a>
+	</div>
+	<script>
+		$('#popup').popup({timeout: 1500, top: 100, duration: 500, cookie: { name: 'ddg' } });
+	</script>
+</body>
+</html>
