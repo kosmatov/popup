@@ -1,27 +1,3 @@
-/** Usage:
- *
- * <div id="my-popup" style="display:none">
- *   <p>My content</p>
- *   <a href="#" class="close">Close</a>
- * </div>
- * <script>
- *   $('#my-popup').popup({
- *
- *     timeout: 5000,
- *     duration: 500,
- *     cookie: {name: 'my-popup', path: '/'},
- *     callback: function() {
- *
- *       $(this).find('a.close').click( function() {
- *
- *         $('#my-popup').fadeOut();
- *         return false;
- *       }
- *     }
- *   });
- * </script>
- */
-
 (function($) {
 
 	$.fn.popup = function(opts) {
@@ -77,10 +53,12 @@
 					position: 'absolute',
 					top: opts.top,
 					left: opts.left
-				}).fadeIn(opts.duration);
+				}).fadeIn(opts.duration, function() {
+
+					$(this).each(opts.callback);
+				});
 
 				$.cookie(opts.cookie.name, 1, opts.cookie);
-				el.each(opts.callback);
 
 			}, opts.timeout);
 		}

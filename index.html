@@ -4,18 +4,43 @@
 	<meta charset="utf-8">
 	<title>Popup</title>
 	<style>
-		#popup {display:none; background:#fff; padding:10px 30px; text-align:center; border-radius:3px; border:solid 1px #eee; box-shadow:#ccc 1px 1px 1px 1px}
+		body {width:800px; margin:0 auto; text-align:center}
+		#popup {display:none; background:#fff; width:150px; height:100px; border-radius:3px; border:solid 1px #eee; box-shadow:#ccc 1px 1px 1px 1px}
 	</style>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="popup.js"></script>
 </head>
 <body>
+	<p id="watch"></p>
 	<div id="popup">
 		<p>My popup</p>
 		<a href="#" class="close">close</a>
 	</div>
 	<script>
-		$('#popup').popup({timeout: 1500, top: 100, duration: 500, cookie: { name: 'ddg' } });
+		var timeout = 5000, watch;
+		$('#popup').popup({timeout: timeout, top: 10, duration: 500, cookie: { name: 'ddg' } });
+
+		var watch = function() {
+
+			timeout -= 1000;
+			if ( timeout )
+				$('#watch').text(timeout/1000);
+
+			else watch = function() {
+
+				$('#watch').html('<a href="">Reload page</a>')
+			}
+
+			setTimeout( watch, 1000 );
+		}
+
+		if ( $.cookie('ddg') )
+			$('#watch').text('Close your browser and open the page again. Or delete cookies for this domain.');
+		else {
+
+			$('#watch').text(timeout/1000);
+			setTimeout( watch, 1000 );
+		}
 	</script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+Usage:
+
+<div id="my-popup" style="display:none">
+<p>My content</p>
+<a href="#" class="close">Close</a>
+</div>
+<script>
+$('#my-popup').popup({
+
+  timeout: 5000,
+  duration: 500,
+  top: 'auto',
+  left: 'auto',
+  cookie: {name: 'my-popup', path: '/'},
+  callback: function() {
+
+	$(this).find('a.close').click( function() {
+
+	  $('#my-popup').fadeOut();
+	  return false;
+	}
+  }
+});
+</script>
+
+Options:
+
+timeout — timeout before start popup show
+duration — fadeIn duration
+top, left — popup position
+cookie — cookie options: name, options for $.cookie
+callback — execute function after popup show
