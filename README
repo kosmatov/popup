@@ -1,9 +1,10 @@
 Usage:
 
 <div id="my-popup" style="display:none">
-<p>My content</p>
-<a href="#" class="close">Close</a>
+	<p>My content</p>
+	<a href="#" class="close">Close</a>
 </div>
+
 <script>
 $('#my-popup').popup({
 
